@@ -282,9 +282,7 @@ aside {
   }
 }
 
-span.picture {
+input#user_avatar {
+  border: none;
   margin-top: 10px;
-  input {
-    border: 0;
-  }
 }

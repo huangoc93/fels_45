@@ -29,6 +29,12 @@ gem 'bootstrap-sass', '3.3.4.1'
 gem 'bcrypt', '~> 3.1.7'
 # Use to generate fake data for database
 gem 'faker', '1.4.2'
+# Upload file
+gem 'carrierwave', '0.10.0'
+# Edit image
+gem 'mini_magick', '3.8.0'
+# Store file in local or cloud
+gem 'fog', '1.23.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
