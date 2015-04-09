@@ -1,0 +1,10 @@
+<tr>
+  <td><%= category.id %></td>
+  <td><%= show_image(:category, category.avatar.url, alt: category.name,
+          style: "max-width: 200px") %></td>
+  <td><%= category.name %></td>
+  <td><%= category.description %></td>
+  <td><%= link_to "edit", edit_admin_category_path(category) %>
+      <%= link_to "delete", admin_category_path(category), method: :delete,
+                                  data: {confirm: "Are you sure?"} %></td>
+</tr>

@@ -1,0 +1,10 @@
+<tr>
+  <td><%= user.id %></td>
+  <td><%= show_image(user.admin? ? :admin : :user, user.avatar.url,
+            alt: user.fullname, style: "max-width: 50px") %></td>
+  <td><%= user.username %></td>
+  <td><%= user.email %></td>
+  <td><%= user.name %></td>
+  <td><%= link_to "delete", admin_user_path(user), method: :delete,
+            data: {confirm: "Are you sure?"} unless user.admin? %></td>
+</tr>

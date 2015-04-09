@@ -181,3 +181,12 @@ aside {
   border: none;
   margin-top: 10px;
 }
+
+#vocabularies_edit_form {
+  input[type="checkbox"] {
+    width: auto;
+  }
+  input[type="text"] {
+    margin-bottom: 0px;
+  }
+}

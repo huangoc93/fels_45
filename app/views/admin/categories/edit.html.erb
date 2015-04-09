@@ -1,0 +1,52 @@
+<% provide(:title, 'Edit category') %>
+<h1>Edit category</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for([:admin, @category], html: {multipart: true}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, size: '50x5', class: 'form-control' %>
+
+      <%= f.label :avatar %>
+      <td><%= show_image(:category, @category.avatar.url, alt: @category.name,
+              style: "display: block; max-width: 100%", id: "box_show_img") %></td>
+      <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+
+      <hr />
+      
+      Vocabularies:
+
+      <table id="vocabularies_edit_form" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Vocabulary</th>
+            <th>Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= f.fields_for :vocabularies do |vocabularies_form| %>
+            <tr>
+              <td><%= vocabularies_form.text_field :spell, class: 'form-control' %></td>
+              <td><%= vocabularies_form.check_box :_destroy, class: 'form-control' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <hr />
+
+      Add new a vocabulary: 
+      <%= f.fields_for :vocabularies, Vocabulary.new do |vocabularies_form| %>
+        <%= vocabularies_form.text_field :spell, class: 'form-control' %>
+      <% end %>
+
+      <%= f.submit "Update category", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
