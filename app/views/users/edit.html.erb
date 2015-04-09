@@ -16,7 +16,8 @@
       <%= f.text_field :name, class: 'form-control', placeholder: "What do you want to be called?" %>
 
       <%= f.label :avatar %>
-      <%= gravatar_for @user, size: 100, style: "float:none; display: block" %>
+      <%= show_image(@user.admin? ? :admin : :user, @user.avatar.url,
+          alt: @user.fullname, style: "max-width: 80px; display: block", id: "box_show_img") %>
       <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
 
       <hr />

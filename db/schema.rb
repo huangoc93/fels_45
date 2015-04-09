@@ -95,11 +95,10 @@ ActiveRecord::Schema.define(version: 20150404062836) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "vocabularies", force: :cascade do |t|
-    t.string   "spell",         null: false
-    t.string   "pronunciation"
+    t.string   "spell",       null: false
     t.integer  "category_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "vocabularies", ["category_id"], name: "index_vocabularies_on_category_id", using: :btree

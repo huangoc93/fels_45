@@ -22,7 +22,15 @@ ready = function() {
     if (size_in_megabytes > 2)
       alert('Maximum file size is 2MB. Please choose a smaller file.');
     else
-      $('img.gravatar').attr('src', URL.createObjectURL(this.files[0]));
+      $('#box_show_img').attr('src', URL.createObjectURL(this.files[0]));
+  });
+
+  $('#category_avatar').bind('change', function() {
+    size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5)
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    else
+      $('#box_show_img').attr('src', URL.createObjectURL(this.files[0]));
   });
 };
 
