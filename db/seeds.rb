@@ -3,14 +3,12 @@ User.create!(username:  "admin",
              password:              "admin",
              password_confirmation: "admin",
              name:  "Hua Viet Ngoc",
-             admin: true,
-             avatar: "/default/admin.png")
+             admin: true)
 User.create!(username:  "ngoc",
              email:     "ngoc@framgia.com",
              password:              "12345",
              password_confirmation: "12345",
-             name:  "ngockingspeed",
-             avatar: "/default/user.png")
+             name:  "ngockingspeed")
 
 15.times do |n|
   first_name = Faker::Name.first_name
@@ -24,8 +22,7 @@ User.create!(username:  "ngoc",
                  email:     email,
                  password:              password,
                  password_confirmation: password,
-                 name: name,
-                 avatar: "/default/user.png")
+                 name: name)
   rescue Exception => e
   end
 end
@@ -37,7 +34,7 @@ end
     description += Faker::Lorem.sentence + " "
   end
   begin
-    Category.create!(name: name, description: description, avatar: "/default/background.jpg")
+    Category.create!(name: name, description: description)
   rescue Exception => e
   end  
 end

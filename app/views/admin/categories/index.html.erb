@@ -1,0 +1,15 @@
+<% provide(:title, 'All categories') %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Action <%= link_to "new", new_admin_category_path %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @categories %>
+  </tbody>
+</table>

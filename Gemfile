@@ -35,7 +35,8 @@ gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '3.8.0'
 # Store file in local or cloud
 gem 'fog', '1.23.0'
-
+# Pagination
+gem 'kaminari'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
