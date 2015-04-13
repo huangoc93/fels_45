@@ -8,13 +8,14 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = Word.new
+    4.times {@word.answers.build}
   end  
 
   def create
     @word = Word.new word_params
     if @word.save
       flash[:success] = "A new word is created successfully"
-      redirect_to admin_words_path
+      redirect_to edit_admin_word_path(@word)
     else
       render 'new'
     end
@@ -28,7 +29,7 @@ class Admin::WordsController < ApplicationController
     @word = Word.find_by_id params[:id]
     if @word.update_attributes word_params
       flash[:success] = "Word updated"
-      redirect_to admin_words_path
+      redirect_to edit_admin_word_path(@word)
     else
       render 'edit'
     end
@@ -43,6 +44,7 @@ class Admin::WordsController < ApplicationController
   private
 
   def word_params
-    params.require(:category).permit(:name, :category_id)
+    params.require(:word).permit(:name, :category_id,
+      answers_attributes: [:id, :content, :correct, :_destroy])
   end
 end

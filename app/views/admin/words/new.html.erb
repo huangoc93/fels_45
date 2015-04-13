@@ -1,0 +1,35 @@
+<% provide(:title, 'Create new word') %>
+<h1>Create new word</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for([:admin, @word]) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :category %>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, 
+            {}, {class: 'form-control'}) %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      Answers:
+      <table id="words_edit_form" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Content</th>
+            <th>Right answer?</th>
+            <th>Delete?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= f.fields_for :answers do |builder| %>
+            <%= render "answer", f: builder %>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= f.submit "Create new word", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

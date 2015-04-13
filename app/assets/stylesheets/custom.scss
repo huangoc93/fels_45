@@ -190,3 +190,12 @@ aside {
     margin-bottom: 0px;
   }
 }
+
+#words_edit_form {
+  input {
+    margin: 0px;
+  }
+  input[type="checkbox"] {
+    width: auto;
+  }
+}
