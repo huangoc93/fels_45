@@ -28,7 +28,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find_by_id params[:id]
     if @category.update_attributes category_params
       flash[:success] = "Category updated"
-      redirect_to edit_admin_category_path(@category)
+      redirect_to admin_categories_path
     else
       render 'edit'
     end
@@ -43,7 +43,6 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :description, :avatar,
-      vocabularies_attributes: [:id, :spell, :_destroy])
+    params.require(:category).permit(:name, :description, :avatar)
   end
 end

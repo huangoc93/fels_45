@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     root      'static_pages#index'
     resources :users,        only:   [:index, :destroy]
     resources :categories,   except: [:show]
-    resources :vocabularies, except: [:show]
+    resources :words,        except: [:show]
   end
   
 end
