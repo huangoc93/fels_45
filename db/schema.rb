@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404062836) do
+ActiveRecord::Schema.define(version: 20150413013652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20150404062836) do
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
+  create_table "answers", force: :cascade do |t|
+    t.string   "content",                    null: false
+    t.boolean  "correct",    default: false
+    t.integer  "word_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "answers", ["word_id"], name: "index_answers_on_word_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
     t.string   "name",        null: false
     t.string   "description"
@@ -35,17 +45,17 @@ ActiveRecord::Schema.define(version: 20150404062836) do
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
-  create_table "lesson_quizzes", force: :cascade do |t|
+  create_table "lesson_words", force: :cascade do |t|
     t.integer  "lesson_id"
-    t.integer  "quiz_id"
+    t.integer  "word_id"
     t.boolean  "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "lesson_quizzes", ["lesson_id", "quiz_id"], name: "index_lesson_quizzes_on_lesson_id_and_quiz_id", unique: true, using: :btree
-  add_index "lesson_quizzes", ["lesson_id"], name: "index_lesson_quizzes_on_lesson_id", using: :btree
-  add_index "lesson_quizzes", ["quiz_id"], name: "index_lesson_quizzes_on_quiz_id", using: :btree
+  add_index "lesson_words", ["lesson_id", "word_id"], name: "index_lesson_words_on_lesson_id_and_word_id", unique: true, using: :btree
+  add_index "lesson_words", ["lesson_id"], name: "index_lesson_words_on_lesson_id", using: :btree
+  add_index "lesson_words", ["word_id"], name: "index_lesson_words_on_word_id", using: :btree
 
   create_table "lessons", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,18 +66,6 @@ ActiveRecord::Schema.define(version: 20150404062836) do
 
   add_index "lessons", ["category_id"], name: "index_lessons_on_category_id", using: :btree
   add_index "lessons", ["user_id"], name: "index_lessons_on_user_id", using: :btree
-
-  create_table "quizzes", force: :cascade do |t|
-    t.string   "answer"
-    t.string   "fake_answer_1"
-    t.string   "fake_answer_2"
-    t.string   "fake_answer_3"
-    t.integer  "vocabulary_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "quizzes", ["vocabulary_id"], name: "index_quizzes_on_vocabulary_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -94,23 +92,23 @@ ActiveRecord::Schema.define(version: 20150404062836) do
 
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  create_table "vocabularies", force: :cascade do |t|
-    t.string   "spell",       null: false
+  create_table "words", force: :cascade do |t|
+    t.string   "name",        null: false
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "vocabularies", ["category_id"], name: "index_vocabularies_on_category_id", using: :btree
-  add_index "vocabularies", ["spell"], name: "index_vocabularies_on_spell", unique: true, using: :btree
+  add_index "words", ["category_id"], name: "index_words_on_category_id", using: :btree
+  add_index "words", ["name"], name: "index_words_on_name", unique: true, using: :btree
 
   add_foreign_key "activities", "users"
-  add_foreign_key "lesson_quizzes", "lessons"
-  add_foreign_key "lesson_quizzes", "quizzes"
+  add_foreign_key "answers", "words"
+  add_foreign_key "lesson_words", "lessons"
+  add_foreign_key "lesson_words", "words"
   add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "users"
-  add_foreign_key "quizzes", "vocabularies"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
-  add_foreign_key "vocabularies", "categories"
+  add_foreign_key "words", "categories"
 end

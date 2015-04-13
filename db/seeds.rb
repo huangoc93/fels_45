@@ -41,9 +41,9 @@ end
 
 Category.all.each do |category|
   30.times do |n|
-    spell = Faker::Lorem.word + " " + Faker::Lorem.word
+    name = Faker::Lorem.word
     begin
-      Vocabulary.create!(spell: spell, category_id: category.id)
+      Word.create!(name: name, category_id: category.id)
     rescue Exception => e
     end
   end
