@@ -182,20 +182,15 @@ aside {
   margin-top: 10px;
 }
 
-#vocabularies_edit_form {
+#edit_answers {
   input[type="checkbox"] {
     width: auto;
   }
-  input[type="text"] {
-    margin-bottom: 0px;
+  input[id*="destroy"] {
+    display: none;
   }
 }
 
-#words_edit_form {
-  input {
-    margin: 0px;
-  }
-  input[type="checkbox"] {
-    width: auto;
-  }
+#answer_template {
+  display: none;
 }

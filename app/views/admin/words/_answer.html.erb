@@ -1,5 +1,8 @@
-<tr>
-  <td><%= f.text_field :content, class: 'form-control' %></td>
-  <td><%= f.check_box :correct %></td>
-  <td><%= f.check_box :_destroy %></td>
-</tr>
+<div class="row">
+  <div class="col-sm-6"><%= f.text_field :content, class: "form-control" %></div>
+  <div class="col-sm-3"><%= f.check_box :correct %></div>
+  <div class="col-sm-3">
+    <%= f.check_box :_destroy %>
+    <%= link_to "delete", "javascript:void(0);", class: "remove-answer" %>
+  </div>
+</div>

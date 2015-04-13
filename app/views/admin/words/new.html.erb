@@ -13,23 +13,31 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      Answers:
-      <table id="words_edit_form" class="table table-striped">
-        <thead>
-          <tr>
-            <th>Content</th>
-            <th>Right answer?</th>
-            <th>Delete?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= f.fields_for :answers do |builder| %>
-            <%= render "answer", f: builder %>
-          <% end %>
-        </tbody>
-      </table>
+      <hr />
+      <h4>Answers:</h4>
+      <div id="edit_answers">
+        <div class="row" style="margin-bottom:10px">
+          <div class="col-sm-6">Content</div>
+          <div class="col-sm-3">Right answer?</div>
+          <div class="col-sm-3">Action</div>
+        </div>
+        <%= f.fields_for :answers do |builder| %>
+          <%= render "answer", f: builder %>
+        <% end %>
+        <div class="row" style="margin-bottom:10px">
+          <div class="col-sm-offset-9 col-sm-3">
+          <%= link_to "new", "javascript:void(0);", id: "add_answer" %>
+          </div>
+        </div>
+      </div>
+
+      <% f.fields_for :answers, Answer.new, child_index: "new_answer" do |builder| %>
+        <% @template = render "answer", f: builder %>
+      <% end %>
 
       <%= f.submit "Create new word", class: "btn btn-primary" %>
     <% end %>
+
+    <div id="answer_template"><%= @template %></div>
   </div>
 </div>
