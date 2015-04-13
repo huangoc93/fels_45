@@ -48,3 +48,12 @@ Category.all.each do |category|
     end
   end
 end
+
+Word.all.each do |word|
+  Answer.create!(content: Faker::Lorem.word + " " + Faker::Lorem.word,
+                 correct: true, word_id: word.id)
+  3.times do 
+    Answer.create!(content: Faker::Lorem.word + " " + Faker::Lorem.word,
+                   correct: false, word_id: word.id)
+  end
+end

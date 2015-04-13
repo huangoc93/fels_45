@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150413013652) do
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "answers", force: :cascade do |t|
-    t.string   "content",                    null: false
+    t.string   "content"
     t.boolean  "correct",    default: false
     t.integer  "word_id"
     t.datetime "created_at",                 null: false
