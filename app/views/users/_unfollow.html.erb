@@ -1,0 +1,6 @@
+<%= form_tag({controller: :relationships,
+              action: :destroy,
+              id: current_user.active_relationships.find_by(followed_id: @user.id).id}, 
+      method: :delete, remote: true) do %>
+  <%= submit_tag "Unfollow", class: "btn btn-md btn-danger" %>
+<% end %>
