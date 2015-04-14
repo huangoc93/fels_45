@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
 section {
@@ -91,6 +91,20 @@ footer {
       margin-left: 15px;
     }
   }
+}
+
+/* layout */
+h4.username {
+  text-align: center;
+}
+.seperator-side {
+  border-left: solid 1px gray;
+}
+.user-avatar-home {
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 /* miscellaneous */
@@ -193,4 +207,8 @@ aside {
 
 #answer_template {
   display: none;
+}
+
+#follow_form {
+  margin-top: 10px;
 }

@@ -1,4 +1,23 @@
-<div class="center jumbotron">
-  <h1>Welcome to the E-Learning App</h1>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= show_image(current_user.admin? ? :admin : :user, current_user.avatar.url,
+          alt: current_user.fullname, class: "user-avatar-home") %>
+      <h4 class="username"><%= current_user.fullname %></h4>
+    </div>
+    <div class="seperator-side col-md-9">
+      <div class="row col-md-offset-1">
+        <%= link_to "Words", root_path, class: "col-md-5 btn btn-lg btn-default" %>
+        <%= link_to "Lessons", root_path, class: "col-md-offset-1 col-md-5 btn btn-lg btn-default" %>
+      </div>
+      <div class="row col-md-offset-1">
+        <h3>Activities</h3>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Welcome to the E-Learning App</h1>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
