@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
     following.include? other_user
   end
 
+  def following_activities
+    Activity.where("user_id IN (?) OR user_id = ?", following_ids, id)
+            .order(created_at: :desc)
+  end
+
   private
 
   def avatar_size

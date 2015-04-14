@@ -227,3 +227,25 @@ h3.category-name {
   border-radius: 20px;
   border: solid 1px blue;
 }
+
+#word_filter {
+  input[type="radio"] {
+    width: auto;
+  }
+  .label-radio {
+    margin-right: 15px;
+  }
+  input[type="submit"] {
+    width: 150px;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.user-activity {
+  margin-top: 20px;
+}
+.user-activity-avatar {
+  width: 50px;
+}
