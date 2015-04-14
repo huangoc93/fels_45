@@ -36,3 +36,15 @@ ready = function() {
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+$(document).on("click", '.remove-answer', function(){
+  $(this).siblings("input[type='hidden']").val(1);
+  $(this).parent().parent().hide();
+});
+
+$(document).on("click", '#add_answer', function(){
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_answer", "g");
+  $(this).parent().parent().before(
+          $("#answer_template").html().replace(regexp, new_id));
+});
