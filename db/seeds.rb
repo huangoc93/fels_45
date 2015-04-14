@@ -27,7 +27,7 @@ User.create!(username:  "ngoc",
   end
 end
 
-10.times do |n|
+6.times do |n|
   name = Faker::Lorem.word
   description = ""
   5.times do 
@@ -40,8 +40,8 @@ end
 end
 
 Category.all.each do |category|
-  30.times do |n|
-    name = Faker::Lorem.word
+  60.times do |n|
+    name = Faker::Lorem.word + " " + Faker::Lorem.word
     begin
       Word.create!(name: name, category_id: category.id)
     rescue Exception => e
@@ -55,5 +55,16 @@ Word.all.each do |word|
   3.times do 
     Answer.create!(content: Faker::Lorem.word + " " + Faker::Lorem.word,
                    correct: false, word_id: word.id)
+  end
+end
+
+user_ngoc = User.find_by_username "ngoc"
+User.all.each do |user|
+  unless user_ngoc.id == user.id
+    user.id < 10 ? user_ngoc.follow(user) : user.follow(user_ngoc)
+  end
+  10.times do
+    Activity.create!(description: Faker::Lorem.sentence,
+                     user_id: user.id)
   end
 end

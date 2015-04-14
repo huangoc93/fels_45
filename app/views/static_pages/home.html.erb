@@ -13,6 +13,9 @@
       </div>
       <div class="row col-md-offset-1">
         <h3>Activities</h3>
+        <% current_user.following_activities.each do |activity| %>
+          <%= render 'shared/activity', activity: activity %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,0 +1,14 @@
+<div class="row user-activity">
+  <div class="col-lg-1">
+    <%= show_image(activity.user.admin? ? :admin : :user, activity.user.avatar.url,
+            alt: activity.user.fullname, class: "user-activity-avatar") %>
+  </div>
+  <div class="col-lg-10" style="margin-left: 10px">
+    <div>
+      <%= link_to activity.user.fullname, user_path(activity.user) %>
+      <span> has an activity at </span>
+      <%= activity.created_at.to_s %>
+    </div> 
+    <div><%= activity.description %></div> 
+  </div>
+</div>
