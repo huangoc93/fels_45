@@ -1,0 +1,14 @@
+<% provide(:title, 'All words') %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Meaning</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @words %> 
+  </tbody>
+</table>
+<%= paginate @words %>

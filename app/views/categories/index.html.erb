@@ -1,0 +1,4 @@
+<% provide(:title, 'All categories') %>
+<% @categories.each.with_index do |category, index| %>
+  <%= render 'category', category: category, parity: index %>
+<% end %>

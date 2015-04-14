@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   resources :users, except: [:destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :words, only: [:index]
+  resources :categories, only: [:index]
 
   namespace :admin do
     root 'static_pages#index'
