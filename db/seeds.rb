@@ -68,3 +68,14 @@ User.all.each do |user|
                      user_id: user.id)
   end
 end
+
+Category.all.each do |category|
+  lesson = Lesson.create!(user_id: user_ngoc.id,
+                          category_id: category.id)
+  category.words.each.with_index do |word, index|
+    break if index >= 10
+    LessonWord.create!(lesson_id: lesson.id,
+                       word_id: word.id,
+                       correct: true)
+  end
+end

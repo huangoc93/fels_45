@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   resources :words, only: [:index]
   resources :categories, only: [:index]
 
+  scope '/lessons' do
+    get ':id' => 'lessons#show', as: :lesson
+    post ':category_id' => 'lessons#create'
+  end
+
   namespace :admin do
     root 'static_pages#index'
     resources :users,        only:   [:index, :destroy]

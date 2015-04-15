@@ -1,0 +1,7 @@
+<% provide(:title, 'Lesson content') %>
+
+<% if @next_quiz.nil? %>
+  <%= render 'lessons/result' %>
+<% else %>
+  <%= render 'lessons/next_quiz' %>
+<% end %>

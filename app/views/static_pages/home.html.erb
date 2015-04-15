@@ -4,6 +4,9 @@
       <%= show_image(current_user.admin? ? :admin : :user, current_user.avatar.url,
           alt: current_user.fullname, class: "user-avatar-home") %>
       <h4 class="username"><%= current_user.fullname %></h4>
+      <p style="text-align:center">
+        Learned: <%= current_user.learned_words.count %> words
+      </p>
     </div>
     <div class="seperator-side col-md-9">
       <div class="row col-md-offset-1">

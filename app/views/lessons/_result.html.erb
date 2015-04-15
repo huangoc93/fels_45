@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h3>
+      <%= "#{@lesson.category.name} | Result: " %>
+      <%= "#{@lesson.lesson_words.right.count}/#{@lesson.lesson_words.count}" %> 
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Word</th>
+          <th>Meaning</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lesson.lesson_words.each do |quiz| %>
+          <tr class= <%= "answer-#{quiz.correct}" %> >
+            <td><%= quiz.word.name %></td>
+            <td><%= quiz.word.answers.right.first.content %></td>
+            <td><%= quiz.correct %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-offset-3">
+  <%= link_to "Back to lessons", categories_path,
+        class: "btn btn-md btn-primary", style: "margin-bottom:10px" %>
+</div>

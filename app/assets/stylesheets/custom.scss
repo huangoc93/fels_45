@@ -178,12 +178,18 @@ aside {
 }
 
 .category-description {
+  display: block;
   text-align: justify;
 }
 
 .category-name {
   font-weight: bold;
-  display: inline-block;
+  display: inline;
+}
+
+.category-learned-words {
+  font-size: 16px;
+  margin-left: 80px;
 }
 
 .category-avatar-img {
@@ -248,4 +254,17 @@ h3.category-name {
 }
 .user-activity-avatar {
   width: 50px;
+}
+
+.quiz-answer {
+  border: solid 1px gray;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.answer-true {
+  color: green;
+}
+.answer-false {
+  color: red;
 }

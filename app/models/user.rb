@@ -70,6 +70,22 @@ class User < ActiveRecord::Base
             .order(created_at: :desc)
   end
 
+  def learned_words category = nil
+    all_lessons = category.nil? ? self.lessons :
+                  Lesson.where("user_id = ? AND category_id = ?", self.id, category.id)
+    lesson_words = LessonWord.where("lesson_id IN (?) AND correct = true", 
+                                     all_lessons.map(&:id))
+    Word.where("id IN (?)", lesson_words.map(&:word_id))
+  end
+
+  def not_learned_words category = nil
+    all_not_learned_words = Word.where("id NOT IN (?)", learned_words.map(&:id))
+    words_in_category = category.nil? ? Word.all
+                                      : Word.where("category_id = ?", category.id)
+    Word.where("id IN (?) AND id IN (?)", 
+      all_not_learned_words.map(&:id), words_in_category.map(&:id))
+  end
+
   private
 
   def avatar_size

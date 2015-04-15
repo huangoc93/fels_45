@@ -15,10 +15,10 @@
                                       params[:category_id]), prompt: "-- all categories --") %>
     </div>
     <div class="col-md-4" style="margin-top: 25px">
-      <% {"learned" => 1, "not learned" => -1, "all" => 0}.each do |name, id| %>
+      <% ["learned", "not learned", "all"].each do |name| %>
         <label class="label-radio">
-          <%= radio_button_tag(:word_type, id, 
-                  id == params[:word_type].to_i || params[:word_type].nil?) %>
+          <%= radio_button_tag(:word_type, name, 
+                  name == params[:word_type] || params[:word_type].nil?) %>
           <span><%= name %></span>
         </label>
       <% end %>

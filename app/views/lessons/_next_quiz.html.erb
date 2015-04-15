@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>
+      <%= "#{@lesson.category.name} | Progress: " %>
+      <%= "#{@lesson.lesson_words.answered.count}/#{@lesson.lesson_words.count}" %> 
+    </h3>
+  </div>
+</div>
+<div class="row" style="margin-top: 20px">
+  <div class="col-md-4 col-md-offset-2" style="margin-top: 30px">
+    <h3 style="text-align:center"><%= @next_quiz.word.name %></h3>
+  </div>
+  <div class="col-md-4">
+    <% @next_quiz.word.answers.map(&:content).shuffle.each do |content| %>
+      <%= link_to content, lesson_path(@lesson, answer: content),
+                            class: "btn btn-lg btn-default quiz-answer" %>
+    <% end %>
+  </div>
+</div>

@@ -1,11 +1,15 @@
 <div class="row" style="margin-top:50px">
   <div class="col-md-offset-1 col-md-5">
     <% if parity % 2 == 1 %>
-      <h3 class="category-name">
-        <%= category.name %>
-      </h3>
+      <h3 class="category-name"><%= category.name %></h3>
+      <span class="category-learned-words">
+        <%= "You've learned #{current_user.learned_words(category).count}/"\
+                           "#{category.words.count} words" %> 
+      </span>
       <p class='category-description'><%= category.description %></p>
-      <%= link_to "Start", categories_path, class: "btn btn-primary start-lesson" %>
+      <%= link_to "Start",
+                url_for(controller: :lessons, action: :create, category_id: category.id),
+                method: :post, class: "btn btn-primary start-lesson" %>
     <% else %> 
       <%= show_image(:category, category.avatar.url, alt: category.name,
           class: "category-avatar-home") %>
@@ -13,11 +17,15 @@
   </div>
   <div class="col-md-5">
     <% if parity % 2 == 0 %>
-      <h3 class="category-name">
-        <%= category.name %>
-      </h3>
+      <h3 class="category-name"><%= category.name %></h3>
+      <span class="category-learned-words">
+        <%= "You've learned #{current_user.learned_words(category).count}/"\
+                           "#{category.words.count} words" %> 
+      </span>
       <p class='category-description'><%= category.description %></p>
-      <%= link_to "Start", categories_path, class: "btn btn-primary start-lesson" %>
+      <%= link_to "Start",
+                url_for(controller: :lessons, action: :create, category_id: category.id),
+                method: :post, class: "btn btn-primary start-lesson" %>
     <% else %> 
       <%= show_image(:category, category.avatar.url, alt: category.name,
           class: "category-avatar-home") %>
